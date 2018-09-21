@@ -10,6 +10,8 @@
     <!-- #4 #sweat out the styles by creating an #external css -->
     <link rel="stylesheet" href="css/style.css" />
 
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     
 </head>
 <body>
@@ -18,51 +20,57 @@
     <h1>
         <!-- #3 #channels #moocus the talkative duck-->
         <img src="http://ip.lfe.mw.tum.de/sections/moocus.png" alt="Moocus, the chatty duck!" style="height: 56px;">
-        chatter|app
+        <span>chatter|app</span>
     </h1>
 
     <!-- #3 #channels #list is much better, than headlines or paragraphs... -->
     <ul>
-        <li>#Yummy
+        <li onclick="switchChannel('#Yummy'); changeStar();">#Yummy
             <!-- #3 #channels #favorite this is not starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <span class="channel-meta"><img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right"></span>
         </li>
 
         <!-- #4 #channel is #highlighted -->
-        <li class="selected">
+        <li class="selected" onclick="switchChannel('#SevenContinents');changeStar();">
             #SevenContinents
             <!-- #3 #channels #favorite this is starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
+            <span class="channel-meta"><img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
+            <img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right"></span>
         </li>
-        <li>#KillerApp
+        <li onclick="switchChannel('#KillerApp');changeStar();">#KillerApp
             <!-- #3 #channels #favorite this is not starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <span class="channel-meta"><img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right"></span>
         </li>
-        <li>#FirstPersonOnMars
+        <li onclick="switchChannel('#FirstPersonOnMars');changeStar();">#FirstPersonOnMars
             <!-- #3 #channels #favorite this is starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
+            <span class="channel-meta"><img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
+            <img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right"></span>
         </li>
-        <li>#Octoberfest
+        <li onclick="switchChannel('#Octoberfest');changeStar();">#Octoberfest
             <!-- #3 #channels #favorite this is not starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <span class="channel-meta"><img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right"></span>
         </li>
+       
     </ul>
 
     <!-- #3 #tab-bar #container -->
     <!-- #4 #sweat #tab-bar -->
     <div id="tab-bar">
         <!-- #4 #tab-bar selected channel should be #highlighted -->
-        <button class="selected">
+        <button class="selected" id="New" onclick="selectTab(New);">
             <!-- #3 #tab-bar #images -->
             <img src="http://ip.lfe.mw.tum.de/sections/lightbulb-o.png" alt="Bulb">
             New
         </button>
-        <button>
+        <button id="Trending" onclick="selectTab(Trending);">
             <!-- #3 #tab-bar #images -->
             <img src="http://ip.lfe.mw.tum.de/sections/fire.png" alt="Hot">
             Trending
         </button>
-        <button>
+        <button id="Favorites" onclick="selectTab(Favorites);">
             <!-- #3 #tab-bar #images -->
             <img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="Star">
             Favorites
@@ -73,10 +81,12 @@
 <!-- #4 #one #page -->
 <div id="chat">
     <h1>
-        #SevenContinents
+        <span id="Appbar">#SevenContinents</span>
         <small>by
-            <strong>cheeses.yard.applies</strong>
+            <a id="Linkto" href="http://w3w.co/cheeses.yard.applies" target="_blank">
+            <strong id="Location">cheeses.yard.applies</strong></a>
         </small>
+        <img id="appbarstar" src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred" onclick="changeStarAppbar();">
     </h1>
 
     <!-- #3 #chat #container -->
@@ -91,8 +101,8 @@
             Wed, June 20th, 13:37
             <em>15 min. left</em>
         </h3>
-        <p>What's the place you folks call home?</p>
-        <button>+5 min.</button>
+        <p>What's the place you folks call home?
+        <button>+5 min.</button></p>
     </div>
 
     <!-- #3 #chat #container -->
@@ -106,8 +116,9 @@
             Wed, June 20th, 13:39
             <em>4 min. left</em>
         </h3>
-        <p>BRISBANE! Hang loose!</p>
-        <button>+5 min.</button>
+        <p>BRISBANE! Hang loose!
+        <button>+5 min.</button></p>
+
     </div>
 
     <!-- #3 #chat #container -->
@@ -121,8 +132,8 @@
             Wed, June 20th, 14:02
             <em>12 min. left</em>
         </h3>
-        <p>The big apple.</p>
-        <button>+5 min.</button>
+        <p>The big apple.
+        <button>+5 min.</button></p>
     </div>
 
     <!-- #3 #chat #container -->
@@ -136,8 +147,8 @@
             Wed, June 20th, 14:02
             <em>7 min. left</em>
         </h3>
-        <p>Eu sou um Cariocas.</p>
-        <button>+5 min.</button>
+        <p>Eu sou um Cariocas.
+        <button>+5 min.</button></p>
     </div>
 
     <!-- #3 #chat #container -->
@@ -151,8 +162,8 @@
             Wed, June 20th, 14:07
             <em>14 min. left</em>
         </h3>
-        <p>Greetings from the western cape!</p>
-        <button>+5 min.</button>
+        <p>Greetings from the western cape!
+        <button>+5 min.</button></p>
     </div>
 
     <!-- #3 #chat #container -->
@@ -166,10 +177,17 @@
             Wed, June 20th, 04:08
             <em>15 min. left</em>
         </h3>
-        <p>北京</p>
-        <button>+5 min.</button>
+        <p>北京
+        <button>+5 min.</button></p>
     </div>
-</div>
+    <div id="chat-bar">
+        <button id="emojis-button">
+        <img src="http://ip.lfe.mw.tum.de/sections/smile-o.png" alt="emojis" onclick="showEmojiBox();">
+        </button>
+        <div id="emojis">
+        &#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605;</div>
+        </div>
+    </div>
 
 </body>
 </html>
